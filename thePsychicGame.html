@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>The Psychic Game</title>
+    <!-- <link rel="stylesheet" href="bootstrap.css"> -->
+  </head>
+  <body>
+
+    <div class="container">
+
+      <div class="jumbotron">
+        <h1 class="text-center"><strong>The Psychic Game</strong></h1>
+        <h2>Guess what letter I am thinking of</span></h2>
+        <h2>Wins: <span id="wins-score"</span></h2>
+        <h2>Losses: <span id="losses-score"</span></h2>
+        <h2>Guesses Left: <span id="guesses-left"</span></h2>
+        <h2>Your Guesses so far: <span id="guesses-made"</span></h2>
+      </div>
+
+<script>
+
+var lossesScore = 0;
+var winsScore = 0;
+var guessesLeft = 10;
+var guessesMade = [];
+var choices = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+
+   document.onkeyup = function(event) {
+
+  var computerMove = choices[Math.floor(Math.random() * choices.length)];
+      
+  if (guessesLeft > 0) {
+      guessesLeft = guessesLeft - 1;
+      var guessesNum = document.getElementById("guesses-left");
+      guessesNum.textContent = guessesLeft;
+
+      var userMove = event.key;
+      guessesMade.push(userMove);
+      var guess = document.getElementById("guesses-made");
+      guess.textContent = guessesMade;
+
+          if (userMove === computerMove) {
+            winsScore = winsScore + 1;
+            var winsNum = document.getElementById("wins-score");
+            winsNum.textContent = winsScore;
+          }
+
+          if (userMove != computerMove) {
+            lossesScore = lossesScore + 1;
+            var lossesNum = document.getElementById("losses-score");
+            lossesNum.textContent = lossesScore;
+          }
+        }
+  else {
+    console.log("Game Over!");
+      guessesLeft = 10;
+      guessesMade = [];
+      }
+    }
+   
+</script>
+</div>
+
+</body>
+</html>
